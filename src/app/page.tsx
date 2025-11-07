@@ -53,12 +53,8 @@ import {
 
 const models = [
   {
-    name: "GPT 4o",
+    name: "Coffee AGI",
     value: "openai/gpt-4o",
-  },
-  {
-    name: "Deepseek R1",
-    value: "deepseek/deepseek-r1",
   },
 ];
 
@@ -86,7 +82,7 @@ const ChatBotDemo = () => {
           model: model,
           webSearch: webSearch,
         },
-      },
+      }
     );
     setInput("");
   };
@@ -181,13 +177,7 @@ const ChatBotDemo = () => {
                   <PromptInputActionAddAttachments />
                 </PromptInputActionMenuContent>
               </PromptInputActionMenu>
-              <PromptInputButton
-                variant={webSearch ? "default" : "ghost"}
-                onClick={() => setWebSearch(!webSearch)}
-              >
-                <GlobeIcon size={16} />
-                <span>Search</span>
-              </PromptInputButton>
+
               <PromptInputSelect
                 onValueChange={(value) => {
                   setModel(value);

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64">
+  <!-- Saucer -->
+  <ellipse cx="30" cy="50" rx="20" ry="4" fill="#A17C5B" opacity="0.45"/>
+  <!-- Cup body -->
+  <rect x="10" y="24" width="34" height="20" rx="4" fill="#6B4F2A"/>
+  <!-- Cup lip shading -->
+  <rect x="10" y="24" width="34" height="4" rx="4" fill="#825E3A"/>
+  <!-- Handle -->
+  <path d="M44 28c6 0 10 3 10 8s-4 8-9 8" fill="none" stroke="#6B4F2A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Steam -->
+  <path d="M22 14c0 4-4 4-4 8" fill="none" stroke="#8D6E63" stroke-width="2" stroke-linecap="round"/>
+  <path d="M30 12c0 5-5 5-5 10" fill="none" stroke="#8D6E63" stroke-width="2" stroke-linecap="round"/>
+  <path d="M38 14c0 4-4 4-4 8" fill="none" stroke="#8D6E63" stroke-width="2" stroke-linecap="round"/>
+</svg>
+
