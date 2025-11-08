@@ -37,14 +37,14 @@ export type ToolHeaderProps = {
 };
 
 const getStatusBadge = (status: ToolUIPart["state"]) => {
-  const labels: Record<ToolUIPart["state"], string> = {
+  const labels: Record<string, string> = {
     "input-streaming": "Pending",
     "input-available": "Running",
     "output-available": "Completed",
     "output-error": "Error",
   };
 
-  const icons: Record<ToolUIPart["state"], ReactNode> = {
+  const icons: Record<string, ReactNode> = {
     "input-streaming": <CircleIcon className="size-4" />,
     "input-available": <ClockIcon className="size-4 animate-pulse" />,
     "output-available": <CheckCircleIcon className="size-4 text-green-600" />,

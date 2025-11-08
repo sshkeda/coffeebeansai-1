@@ -90,6 +90,18 @@ const ChatBotDemo = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 relative size-full h-screen">
       <div className="flex flex-col h-full">
+        {/* Header with Navigation */}
+        <div className="mb-4 pb-4 border-b flex items-center justify-between">
+          <h1 className="text-2xl font-bold">Coffee AI Chat</h1>
+          <a
+            href="/tournament"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2"
+          >
+            <span>🏆</span>
+            <span>Tournament</span>
+          </a>
+        </div>
+
         <Conversation className="h-full">
           <ConversationContent>
             {messages.map((message) => (
