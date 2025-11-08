@@ -2,6 +2,7 @@
 
 import { MapPin, Star, Trophy, Users } from "lucide-react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -63,12 +64,13 @@ export function CoffeeShopCard({
             {/* Image Section */}
             <div className="relative h-40 bg-muted overflow-hidden">
               {shop.photoUrl && !imageError ? (
-                <img
+                <Image
                   src={shop.photoUrl}
                   alt={shop.name}
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   onError={() => setImageError(true)}
-                  className="w-full h-full object-cover"
+                  className="object-cover"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900 dark:to-orange-900">

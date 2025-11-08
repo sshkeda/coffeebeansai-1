@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useTournamentStore } from "@/lib/tournament-store";
-import type { BattleResult, CoffeeShop } from "@/lib/types";
+import type { BattleResult } from "@/lib/types";
 
 export function BattleArena() {
   const {
@@ -73,6 +73,7 @@ export function BattleArena() {
         reasoning: data.reasoning,
         scores: data.scores,
         timestamp: data.timestamp,
+        round: currentRound as "quarterfinal" | "semifinal" | "final",
       };
 
       setBattleResult(result);

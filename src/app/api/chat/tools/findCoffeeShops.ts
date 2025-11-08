@@ -80,10 +80,10 @@ export const findCoffeeShops = tool({
       }
 
       // Format the coffee shops
-      const coffeeShops = sortedShops.map((place: any) => {
+      const coffeeShops = sortedShops.map((place: GooglePlace) => {
         // Get photo URL if available
-        let photoUrl;
-        if (place.photos && place.photos[0]) {
+        let photoUrl: string | undefined;
+        if (place.photos?.[0]) {
           const photoReference = place.photos[0].photo_reference;
           photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoReference}&key=${apiKey}`;
         }

@@ -30,6 +30,18 @@ export function TournamentBracket() {
     return selectedShops[0]?.id === shop.id || selectedShops[1]?.id === shop.id;
   };
 
+  // Check if a shop has already battled in a specific round
+  const hasShopBattled = (
+    shop: CoffeeShop,
+    round: "quarterfinal" | "semifinal" | "final",
+  ) => {
+    return battles.some(
+      (battle) =>
+        battle.round === round &&
+        (battle.shop1.id === shop.id || battle.shop2.id === shop.id),
+    );
+  };
+
   // Get shops for each round
   const quarterfinals = bracket.filter((slot) => slot.round === "quarterfinal");
   const semifinals = bracket.filter((slot) => slot.round === "semifinal");
@@ -59,18 +71,21 @@ export function TournamentBracket() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Quarterfinals - Left Side */}
+        {/* Quarterfinals */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-center">Round 1</h3>
+          <h3 className="text-lg font-semibold text-center">Quarterfinals</h3>
           <div className="space-y-3">
-            {quarterfinals.slice(0, 4).map((slot) =>
+            {quarterfinals.map((slot) =>
               slot.shop ? (
                 <CoffeeShopCard
                   key={slot.shop.id}
                   shop={slot.shop}
                   isSelected={isSelected(slot.shop)}
                   onSelect={selectShop}
-                  disabled={currentRound !== "quarterfinal"}
+                  disabled={
+                    currentRound !== "quarterfinal" ||
+                    hasShopBattled(slot.shop, "quarterfinal")
+                  }
                 />
               ) : (
                 <div
@@ -84,11 +99,11 @@ export function TournamentBracket() {
           </div>
         </div>
 
-        {/* Semifinals - Left Side */}
+        {/* Semifinals */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-center">Semifinals</h3>
           <div className="space-y-3 pt-12">
-            {semifinals.slice(0, 2).map((slot) =>
+            {semifinals.map((slot) =>
               slot.shop ? (
                 <motion.div
                   key={slot.shop.id}
@@ -100,7 +115,10 @@ export function TournamentBracket() {
                     shop={slot.shop}
                     isSelected={isSelected(slot.shop)}
                     onSelect={selectShop}
-                    disabled={currentRound !== "semifinal"}
+                    disabled={
+                      currentRound !== "semifinal" ||
+                      hasShopBattled(slot.shop, "semifinal")
+                    }
                     battleResult={getBattleResult(slot.shop)}
                     isWinner={true}
                   />
@@ -120,7 +138,7 @@ export function TournamentBracket() {
         {/* Finals */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-center">Finals</h3>
-          <div className="space-y-3 pt-24">
+          <div className="space-y-3 pt-36">
             {finals.map((slot) =>
               slot.shop ? (
                 <motion.div
@@ -133,7 +151,10 @@ export function TournamentBracket() {
                     shop={slot.shop}
                     isSelected={isSelected(slot.shop)}
                     onSelect={selectShop}
-                    disabled={currentRound !== "final"}
+                    disabled={
+                      currentRound !== "final" ||
+                      hasShopBattled(slot.shop, "final")
+                    }
                     battleResult={getBattleResult(slot.shop)}
                     isWinner={true}
                   />
@@ -153,7 +174,7 @@ export function TournamentBracket() {
         {/* Champion */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-center">Champion</h3>
-          <div className="pt-36">
+          <div className="pt-60">
             {championSlot?.shop ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -202,7 +223,10 @@ export function TournamentBracket() {
                   shop={slot.shop}
                   isSelected={isSelected(slot.shop)}
                   onSelect={selectShop}
-                  disabled={currentRound !== "quarterfinal"}
+                  disabled={
+                    currentRound !== "quarterfinal" ||
+                    hasShopBattled(slot.shop, "quarterfinal")
+                  }
                 />
               ) : null,
             )}
@@ -219,7 +243,10 @@ export function TournamentBracket() {
                   shop={slot.shop}
                   isSelected={isSelected(slot.shop)}
                   onSelect={selectShop}
-                  disabled={currentRound !== "semifinal"}
+                  disabled={
+                    currentRound !== "semifinal" ||
+                    hasShopBattled(slot.shop, "semifinal")
+                  }
                   battleResult={getBattleResult(slot.shop)}
                   isWinner={true}
                 />
@@ -238,7 +265,10 @@ export function TournamentBracket() {
                   shop={slot.shop}
                   isSelected={isSelected(slot.shop)}
                   onSelect={selectShop}
-                  disabled={currentRound !== "final"}
+                  disabled={
+                    currentRound !== "final" ||
+                    hasShopBattled(slot.shop, "final")
+                  }
                   battleResult={getBattleResult(slot.shop)}
                   isWinner={true}
                 />

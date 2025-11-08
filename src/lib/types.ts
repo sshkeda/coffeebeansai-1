@@ -34,6 +34,7 @@ export interface BattleResult {
     };
   };
   timestamp: string;
+  round: "quarterfinal" | "semifinal" | "final";
 }
 
 export interface BracketSlot {
