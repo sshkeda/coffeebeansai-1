@@ -1,6 +1,29 @@
 import { tool } from "ai";
 import { z } from "zod";
 
+// Google Places API response types
+interface GooglePlace {
+  place_id: string;
+  name: string;
+  vicinity?: string;
+  formatted_address?: string;
+  rating: number;
+  user_ratings_total: number;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  photos?: Array<{
+    photo_reference: string;
+  }>;
+  price_level?: number;
+  opening_hours?: {
+    open_now?: boolean;
+  };
+}
+
 /**
  * Tool to find top 8 coffee shops near a location using Google Places API
  */
