@@ -12,19 +12,24 @@ export const webSearch = tool<Input, string>({
   description: "Search the web for information",
   inputSchema,
   execute: async ({ query }) => {
-    const result = await generateText({
-      model: xai("grok-4-fast-non-reasoning"),
-      prompt: query,
-      providerOptions: {
-        xai: {
-          searchParameters: {
-            mode: "on",
-            maxSearchResults: 3,
+    try {
+      const result = await generateText({
+        model: xai("grok-4-fast-non-reasoning"),
+        prompt: query,
+        providerOptions: {
+          xai: {
+            searchParameters: {
+              mode: "on",
+              maxSearchResults: 3,
+            },
           },
         },
-      },
-    });
+      });
 
-    return result.text;
+      return result.text;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   },
 });

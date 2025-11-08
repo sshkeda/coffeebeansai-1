@@ -127,7 +127,7 @@ const ChatBotDemo = () => {
                         const toolPart = part as ToolUIPart;
 
                         return (
-                          <Tool key={`${message.id}-${i}`} defaultOpen={true}>
+                          <Tool key={`${message.id}-${i}`}>
                             <ToolHeader
                               type={toolPart.type}
                               state={toolPart.state}
