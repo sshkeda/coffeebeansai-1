@@ -56,14 +56,14 @@ export const findCoffeeShops = tool({
       }
 
       // Sort by rating (descending) and take top 8
-      const sortedShops = data.results
+      const sortedShops = (data.results as GooglePlace[])
         .filter(
-          (place: any) =>
+          (place: GooglePlace) =>
             place.rating &&
             place.user_ratings_total &&
             place.user_ratings_total > 10,
         ) // Filter places with ratings and at least 10 reviews
-        .sort((a: any, b: any) => {
+        .sort((a: GooglePlace, b: GooglePlace) => {
           // Sort by rating first, then by number of reviews
           if (b.rating !== a.rating) {
             return b.rating - a.rating;
@@ -85,8 +85,7 @@ export const findCoffeeShops = tool({
         let photoUrl;
         if (place.photos && place.photos[0]) {
           const photoReference = place.photos[0].photo_reference;
-          // Use maxwidth=1600 for high-quality images (Google Places API supports up to 1600px)
-          photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photo_reference=${photoReference}&key=${apiKey}`;
+          photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoReference}&key=${apiKey}`;
         }
 
         return {
